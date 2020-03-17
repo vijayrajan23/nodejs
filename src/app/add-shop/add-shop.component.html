@@ -1,0 +1,299 @@
+<div id="page-wrapper">
+<div class="main-page">
+<div class="container">
+      
+
+        <div class="row"> 
+            <div class="col-md-6">
+                    <h5 class="page_title" >Add shop details</h5> 
+
+            </div>
+            <div class="col-md-6">
+                    <div *ngIf="showInsert" class="alert alert-success alert-dismissible" style="padding: 5px;
+                    text-align: center;">
+                            <button style="padding: 5px;" type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong> One record inserted successfully..!</strong>
+                          </div>
+
+                            <div *ngIf="showUpdate" class="alert alert-info alert-dismissible" style="padding: 5px;
+                    text-align: center;">
+                            <button style="padding: 5px;" type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong> One record Updated successfully..!</strong>
+                          </div> 
+                           <div *ngIf="showDelete" class="alert alert-danger alert-dismissible" style="padding: 5px;
+                    text-align: center;">
+                            <button style="padding: 5px;" type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong> One record Deleted successfully..!</strong>
+                          </div>
+            </div>
+        </div>        
+        <form [formGroup]='addShop'>
+                <input class="form-control" type="hidden" formControlName='shopId'>
+        <div class="row filter_design">
+                    <div class="form-group col-md-2">
+                        <label>Customer Name</label><span style="color:red">*</span><br>
+                        <select class="form-control" formControlName='customerName' [ngClass]="{'is-invalid': submitted && f.customerName.errors }">
+                                <option value="" >Select Customer</option>
+                            <option value="{{cus.customer_id}}" *ngFor="let cus of customer">{{cus.customer_name}}</option>
+                        </select>
+                     
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Division Name</label><span style="color:red">*</span><br>
+                    <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.divName.errors }"  formControlName='divName'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Point PinCode</label><span style="color:red">*</span><br>
+                    <input class="form-control" minLength="6"  maxlength="6" [ngClass]="{ 'is-invalid': submitted && f.pointPinCode.errors }"  formControlName='pointPinCode'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Point Location</label><span style="color:red">*</span><br>
+                    <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.pointLocation.errors }"  formControlName='pointLocation'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Radiant LOI ID</label><span style="color:red">*</span><br>
+                    <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.radiantLoiId.errors }"  formControlName='radiantLoiId'>
+                    </div>
+                    <div class="form-group col-md-2">
+                    <mat-form-field color="accent">
+                            <mat-label style="font-size: 12px;font-weight: 400 !important;">Loi Date</mat-label>
+                            <input style="font-size: 13px !important;"  formControlName='loiDate' matInput [matDatepicker]="dp2" >
+                            <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                            <mat-datepicker  #dp2></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Customer Code</label><span style="color:red">*</span><br>
+                    <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.customerCode.errors }" formControlName='customerCode'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Customer Point Code</label><span style="color:red">*</span><br>
+                    <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.customerPointCode.errors }" formControlName='customerPointCode'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Point Location Code</label><span style="color:red">*</span><br>
+                    <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.pointLocationCode.errors }" formControlName='pointLocationCode'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Point Name</label><span style="color:red">*</span><br>
+                    <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.pointName.errors }" formControlName='pointName'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Point Address</label><span style="color:red">*</span><br>
+                    <textarea class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.pointAddress.errors }" formControlName='pointAddress'></textarea>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Hierarchy Code</label><span style="color:red">*</span><br>
+                    <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.pointHierarchy.errors }" formControlName='pointHierarchy'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Sub Customer Code</label><span style="color:red">*</span><br>
+                    <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.pointSolId.errors }" formControlName='pointSubCusCode'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Sol ID</label><span style="color:red">*</span><br>
+                    <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.pointSolId.errors }" formControlName='pointSolId'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Division Code</label><span style="color:red">*</span><br>
+                    <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.pointDivCode.errors }" formControlName='pointDivCode'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Point Phone No</label><span style="color:red">*</span><br>
+                    <input class="form-control" minLength="10"  maxlength="10" [ngClass]="{ 'is-invalid': submitted && f.pointPhoneNo.errors }" formControlName='pointPhoneNo'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Contact Name</label><span style="color:red">*</span><br>
+                    <input class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pointContactName.errors }" type="text" formControlName='pointContactName'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Contact Mobile No</label><span style="color:red">*</span><br>
+                    <input class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pointMobileNo.errors }" minLength="10"  maxlength="10" formControlName='pointMobileNo'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Email ID</label><span style="color:red">*</span><br>
+                    <input [ngClass]="{ 'is-invalid': submitted && f.pointEmail.errors }" class="form-control" type="text" formControlName='pointEmail'>
+                    <div *ngIf="submitted && f.pointEmail.errors" class="invalid-feedback">
+                        <div *ngIf="f.pointEmail.errors.required">Email is required</div>
+                        <div *ngIf="f.pointEmail.errors.email">Email must be a valid</div>
+                    </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Service Type</label><span style="color:red">*</span><br>
+                        <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pointServiceType.errors }" formControlName='pointServiceType'>
+                            <option value="Cash Pickup" >Cash Pickup</option>
+                            <option value="Evening Pickup" >Evening Pickup</option>
+                            <option value="Cash Delivery" >Cash Delivery</option>
+                            <option value="Both" >Both</option>
+                            <option value="Cheque Pickup" >Cheque Pickup</option>
+                            <option value="DD Delivery" >DD Delivery</option>
+                        </select>
+                        <div *ngIf="submitted && f.pointServiceType.errors" class="invalid-feedback">
+                            <div *ngIf="f.pointServiceType.errors.required">Service Type is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Cash Max.Limit</label><span style="color:red">*</span><br>
+                    <input class="form-control" type="number" [ngClass]="{ 'is-invalid': submitted && f.pointCashLimit.errors }" formControlName='pointCashLimit'>
+                    <div *ngIf="submitted && f.pointCashLimit.errors" class="invalid-feedback">
+                        <div *ngIf="f.pointCashLimit.errors.required">Cash Limit is required</div>
+                    </div>
+                    </div>
+                
+                
+                    <div class="form-group col-md-2">
+                        <label>Deposit Bank Type</label><span style="color:red">*</span><br>
+                        <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pointBankType.errors }" formControlName='pointBankType'>
+                            <option value="Burial">Burial</option>
+                            <option value="Partner Bank">Partner Bank</option>
+                            <option value="Client Bank">Client Bank</option>
+                            <option value="Vault">Vault</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Pickup Type</label><span style="color:red">*</span><br>
+                        <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pointPickupType.errors }" formControlName='pointPickupType'>
+                            <option value="Request">Request</option>
+                            <option value="Beat">Beat</option>
+                            <option value="Evening Beat">Evening Beat</option>
+                            <option value="Selected Beat">Selected Beat</option>
+                        </select>
+                    </div>
+                    <!-- <div class="form-group col-md-2">
+                        <label> Point Type</label><br>
+                        <select class="form-control" formControlName='pointType'>
+                            <option value="Active">Active</option>
+                            <option value="Ready">Ready</option>
+                            <option value="Inactive">Inactive</option>
+                            <option value="Temp Inactive">Temp Inactive</option>
+                            <option value="Lost">Lost</option>
+                        </select>
+                    </div> -->
+                    <div class="form-group col-md-3">
+                      
+                    <mat-form-field color="accent">
+                            <mat-label style="font-size: 12px;font-weight: 400 !important;">Point Activation Date</mat-label>
+                            <input style="font-size: 13px !important;"  formControlName='pointActivateDate'   matInput [matDatepicker]="picker1" >
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker  #picker1></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-3" >
+                          <mat-form-field color="accent" >
+                                <mat-label style="font-size: 12px;font-weight: 400 !important;">Point Deactivation Date</mat-label>
+                                <input style="font-size: 13px !important;"  matInput formControlName='pointDeactivationDate' [matDatepicker]="dp3" >
+                                <mat-datepicker-toggle matSuffix [for]="dp3" ></mat-datepicker-toggle>
+                                <mat-datepicker #dp3 ></mat-datepicker>
+                              </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-3" >
+                            <label id="example-radio-group-label">Point Type</label><span style="color:red">*</span>    <br>
+                            <mat-radio-group  color="accent" formControlName='pointType' aria-label="Select an option">
+                            <mat-radio-button  value="Active" style="font-size: 13px;">Active </mat-radio-button>
+                            &nbsp;<mat-radio-button value="Inactive" style="font-size: 13px;">Inactive</mat-radio-button>
+                            </mat-radio-group>
+                    </div>
+                   
+                    <div class="form-group col-md-2">
+<button mdbBtn *ngIf="sub_btn" style="background-color:#249e29!important;color:white;background-color: #249e29!important;
+color: white;
+padding: 5px 14px;margin-top: 19px;"
+    class="relative waves-light" size="sm" 
+    (click)="onSubmit()" mdbWavesEffect>Submit</button>
+<button *ngIf="update_btn" mdbBtn style="background-color:#249e29!important;color:white;background-color: #249e29!important;
+color: white;
+padding: 5px 14px;margin-top: 19px;"
+    class="relative waves-light" size="sm" 
+    (click)="onUpdate()" mdbWavesEffect>Update</button>
+                    </div>
+           
+        </div>    
+       </form>
+    <div class="row">
+            <section  style="width: 100%;">
+            <table  class="table table-striped table-hover" [svData]="data" #sv="svDataTable" [svRowsOnPage]="5" svSortOrder="asc">
+                    <thead>
+                    <tr>
+                        <th>
+                            S.no
+                        </th>
+                        <th>Shop ID</th>
+                        <th>Point Location</th>
+                        <th>Point Name</th>
+                        <th>Point Address</th>
+                        <th> Email</th>
+                        <th>Service Type</th>
+                        <th>Pickup Type</th>
+                        <th>Action </th>
+                    </tr>
+                    </thead>
+                    <tbody *ngIf="data; else skeleton">
+                    <tr *ngFor="let item of sv.data; let num=index" style="text-align: left !important">
+                        <td>{{num+1}}</td>
+                        <td>RSC{{ item.shop_id }}</td>
+                        <td>{{ item.point_location }}</td>
+                        <td >{{ item.point_name }}</td>
+                        <td>{{ item.point_address }}</td>
+                        <td>{{ item.point_email }}</td>
+                        <td>{{ item.point_servicetype }}</td>
+                        <td>{{ item.point_pickup_type }}</td> 
+                        <td align="center">
+                            <tr>
+                                <td><button class="my_view_btn_update" (click)="editShop(num)" mdbWavesEffect>Update</button> </td>
+                                <td> <button class="my_view_btn_delete"  (click)="deleteShop( item.shop_id )" mdbWavesEffect>Delete</button></td>
+                             </tr>
+                        </td>  
+                        
+                    </tr>
+                   
+                    </tbody>
+                    <ng-template #skeleton>
+                            <tbody>
+                            <tr>
+                                <td colspan="10">
+                                        <div class="ph-item">
+                                                <div class="ph-col-12">
+                                                        <div class="ph-col-2 empty"></div>
+                                                   <div class="ph-row">
+                                                        <div class="ph-col-4"></div>
+                                                        <div class="ph-col-2"></div>
+                                                       <div class="ph-col-12"></div>
+                                                      </div>
+                                                  <div class="ph-col-2 empty"></div>
+                                                </div>
+                                                <div class="ph-col-2">
+                                                        <div class="ph-col-2"></div>
+                                                </div>
+                                                <div>
+                                                      <div class="ph-row">
+                                                        <div class="ph-col-12"></div>
+                                                        <div class="ph-col-2"></div>
+                                                        <div class="ph-col-10 empty"></div>
+                                                        <div class="ph-col-8 big"></div>
+                                                        <div class="ph-col-4 big empty"></div>
+                                                      </div>
+                                                </div>
+                                        </div> 
+                                </td>
+                                        
+                                </tr>
+                            </tbody>
+                            </ng-template>
+
+                    <tfoot>
+                    <tr>
+                        <td colspan="8">
+                            <sv-bootstrap-paginator [rowsOnPageSet]="[10, 20, 30]"></sv-bootstrap-paginator>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+       </section>
+       
+            
+                    
+    </div>
+</div>
+</div>
+</div>
+

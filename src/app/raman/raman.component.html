@@ -1,0 +1,89 @@
+<div id="page-wrapper">
+    <div class="main-page">
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+    <mat-form-field class="example-full-width">
+      <input style="float:right !important" matInput (keyup)="applyFilter($event.target.value)" placeholder="Global Search">
+    </mat-form-field>
+  </div>
+    <div class="col-md-4">
+    <mat-form-field style="float:right !important" class="example-full-width">
+      <input #ss matInput
+             placeholder="State"
+             aria-label="State"
+             [matAutocomplete]="auto"
+             [formControl]="stateCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name"> 
+          <span>{{state.name}}</span>
+        </mat-option>
+      </mat-autocomplete> 
+      
+    </mat-form-field>
+  </div>
+  <div class="example-button-row col-md-2" style="margin-top: 10px !important;">
+      <button mat-raised-button color="primary" (click)="stateSearch(ss.value);"><mat-icon>youtube_searched_for</mat-icon></button>
+    </div>
+  </div>
+  
+  
+  <div class="example-container mat-elevation-z8">
+  
+    <mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="loc_id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Location Id </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.loc_id}} </mat-cell>
+      </ng-container>
+  
+      <!-- Progress Column -->
+      <ng-container matColumnDef="state">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> State </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.state}} </mat-cell>
+      </ng-container>
+  
+      <!-- Color Column -->
+      <ng-container matColumnDef="district">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> District </mat-header-cell>
+        <mat-cell *matCellDef="let row" > {{row.district}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
+        <mat-cell *matCellDef="let row" > {{row.location}} </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+   <div class="ph-item" *ngIf="!dataSource">
+      <div class="ph-col-12">
+              <div class="ph-col-2 empty"></div>
+         <div class="ph-row">
+              <div class="ph-col-4"></div>
+              <div class="ph-col-2"></div>
+             <div class="ph-col-12"></div>
+            </div>
+        <div class="ph-col-2 empty"></div>
+      </div>
+      <div class="ph-col-2">
+              <div class="ph-col-2"></div>
+      </div>
+      <div>
+            <div class="ph-row">
+              <div class="ph-col-12"></div>
+              <div class="ph-col-2"></div>
+              <div class="ph-col-10 empty"></div>
+              <div class="ph-col-8 big"></div>
+              <div class="ph-col-4 big empty"></div>
+            </div>
+      </div>
+</div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100,1000]" showFirstLastButtons></mat-paginator>
+  </div>
+  </div>
+  </div>
+  </div>
+  

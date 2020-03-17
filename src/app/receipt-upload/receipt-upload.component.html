@@ -1,0 +1,190 @@
+<div id="page-wrapper">
+        <div class="main-page">
+<div class="container">
+   
+        <div class="row">
+            <div class="col-md-12">
+             
+                <h5 class="page_title" >Receipt Upload</h5>
+              
+            </div>
+            <div class="col-md-12 filter_design">
+                <form [formGroup]='receipt_upload' (ngSubmit)="onSubmit">
+                    <div class="col-md-12">
+                        <div class="form-group col-md-2">
+                            <label> Transaction type</label><br>
+                            <select class="form-control" formControlName='Transaction_type'>
+                                <option value="Pickup">Pickup</option>
+                                <option value="Deposit">Deposit</option>
+                                <option value="Delivery">Delivery</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Transaction status</label><br>
+                            <select class="form-control" formControlName='Transaction_status'>
+                                <option  value="1">Uploaded</option>
+                                <option  value="0">Not Uploaded</option>  
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Region Name</label><br>
+                            <select class="form-control" formControlName='Region_Name' >
+                               <option value="{{rr.region_id}}" *ngFor="let rr of region_data">{{rr.region_name}}</option>
+                            </select>
+                           
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Date</label><br>
+                        <input class="form-control" type="date" formControlName='Date'>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Client Name</label><br>
+                            <select class="form-control" formControlName='Client_Name' (change)="getCustomer($event)">
+                                <option value="{{w.client_id}}" *ngFor="let w of client_data">{{w.client_name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>  Customer Name</label><br>
+                            <select class="form-control" formControlName='Customer_Name'>
+                                <option value="{{y.customer_id}}" *ngFor="let y of customer_data" >{{y.customer_name}}</option>       
+                            </select>
+                        </div>
+                    
+                    
+                        <div class="form-group col-md-2">
+                            <label>   CE's Name</label><br>
+                            <select class="form-control" formControlName='CEs_Name'>
+                                <option value="RAD-TN-4343">RAD-TN-4343</option>
+                                <option value="RAD-TN-4344">RAD-TN-4344</option>
+                                <option value="RAD-TN-4345">RAD-TN-4345</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <button mdbBtn style="background-color:#249e29!important;color:white" class="relative waves-light" size="sm" mdbWavesEffect type="submit" (click)="getTransaction($event)">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>    
+        </div>
+        <div class="row">
+           
+            <table class="table table-striped" [svData]="data" #sv="svDataTable" [svRowsOnPage]="5" svSortBy="tid" svSortOrder="asc">
+                <thead>
+                <tr>
+                    <th>
+                        S.no
+                    </th>
+                    <th><sv-default-sorter by="tid">Transaction ID</sv-default-sorter></th>
+                    <th>Point Location</th>
+                    <th>CE Name/ID</th>
+                    <th>Client Name</th>
+                    <th>Customer Name</th>
+                    <th>Dep.Type</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of sv.data; let num=index">
+                    <td>{{num+1}}</td>
+                    <td>RAD00{{ item.id }}</td>
+                    <td>{{ item.region_name }}</td>
+                    <td >{{ item.ce_id }}</td>
+                    <td>{{ item.client_name }}</td>
+                    <td>{{ item.customer_name }}</td>
+                    <td>{{ item.deposit_type }}</td>
+                    <td>{{ item.amount }}</td>
+                    <td >
+                        <i *ngIf="item.upload_status=='0'" style="color:red; font-weight: 800;" class="material-icons" (click)="openDialog(num)">
+                        clear
+                        </i>
+                        <i *ngIf="item.upload_status=='1'" style="color:green; font-weight: 800;" class="material-icons" >
+                        done
+                        </i>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <sv-bootstrap-paginator [rowsOnPageSet]="[10, 20, 30]"></sv-bootstrap-paginator>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    <div mdbModal #try="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialogs modal-full-height modal-right" role="document">
+        <div class="modal-content " >
+            <form [formGroup]="addressForm" class="container mt-3">
+                <input  type="hidden" formControlName="Transaction_id" >
+                <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="try.hide()">
+                    <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel">Receipt upload</h4>
+                </div>
+                <div class="modal-body"> 
+                    <div class="receipt_upload_section" #receipt_upload_section>
+                            <div class="col-sm-8 own">
+                                <label for="name" class="col-sm-5">Number Of Receipt </label>
+                                <div class="col-sm-7" style="display: inline-flex;">
+                                    <p class="decr" (click)="removeAddress(i)">-</p>
+                                    <input type="text" class=" form-control1" value='1'>
+                                    <p class="incr" (click)="increment()">+</p>
+                                </div>
+                            </div>
+                            <div formArrayName="addresses"  *ngFor="let address of addressForm.get('addresses').controls; let i = index;">
+                            <div [formGroupName]="i">
+                                <hr>
+                                <div class="col-sm-12 own">
+                                    <div class="col-sm-8" *ngIf="par_transaction" >
+                                        <label for="name" class="col-sm-5">Pickup Amount </label>
+                                        <input type="text" class="col-sm-7 form-control1"   formControlName="amount">
+                                        <label for="name" class="col-sm-5">Deposit Type </label>
+                                        <select class="col-sm-7 form-control1"  formControlName="type_deposite">
+                                            <option value="Burial">Burial</option>
+                                            <option  value="Partner Bank">Partner Bank</option>
+                                            <option  value="Client Bank">Client Bank</option>
+                                        </select>
+                                        <label for="name" class="col-sm-5">Receipt No </label>
+                                        <input type="text" class="col-sm-7 form-control1"   formControlName="receipt_no">
+                                        <label for="name" class="col-sm-5"> Deposit Branch </label>
+                                        <input type="text" class="col-sm-7 form-control1"  formControlName="dep_branch">
+                                        <label for="name" class="col-sm-5"> Remarks1 </label>
+                                        <input type="text" class="col-sm-7 form-control1"  formControlName="remark1">
+                                        <label for="name" class="col-sm-5">Region Recon Remarks </label>
+                                        <input type="text" class="col-sm-7 form-control1"  formControlName="region_remark">
+                                        <label for="name" class="col-sm-5">Collection Remarks </label>
+                                        <input type="text" class="col-sm-7 form-control1 "  formControlName="collection_remark">
+                                        <label for="name" class="col-sm-5">Scan Image</label>
+                                        <input type="file" class="col-sm-7 form-control1" (change)="file_pre($event,i)"  formControlName="Scan_image">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="img_border">
+                                            <div class="image-preview mb-3" >
+                                                <img class="img_{{i}}" height="232" width="250" />                 
+                                            </div>     
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                        <div [innerHTML]="myHtml"></div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="try.hide()" mdbWavesEffect>Close</button>
+                    <button type="button" (click)="submit_receipt();try.hide();"  mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+                </div>
+        </form> 
+        </div>
+      </div>
+    </div>

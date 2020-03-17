@@ -1,0 +1,56 @@
+
+.form-control {
+    font-size: 12px;
+    height: 25px;
+    padding: 2px;
+    border-radius: 5px;
+ }
+.form-group {
+    display: inline-block;
+}
+.filter_design{
+    border: 1px solid #1b536e45;
+    margin: 8px 0px;
+}
+label{
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 6px;
+}
+table thead th{
+    BACKGROUND: #1b536e;
+    COLOR: WHITE;
+    FONT-SIZE: 13PX;
+    font-weight: 500;
+}
+.table_import{
+    width: 100%;
+}
+.table_import tr:first-child {
+    background:#1b536e;
+    color: white !important;
+  }
+  .table_import tr:first-child td{
+    color: white !important;
+  }
+table td{   
+    padding: 3px;
+    font-size: 12px;
+    color: black;
+    text-align: center;
+}
+.filter_design{
+    border: 1px solid #1b536e45;
+    margin: 8px 0px;
+}
+.page_title{
+    padding: 4px;
+    background: #d1dce11a;
+    margin: 8px 1px 0px 0px;
+    color: #175573;
+    font-size: 16px;
+}
+.btn.btn-sm {
+    padding: 5PX 14PX;
+    font-size: 0.64rem;
+ }

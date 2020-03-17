@@ -1,0 +1,342 @@
+<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+    <!--left-fixed -navigation-->
+    <aside class="sidebar-left" style="overflow-y: scroll !important;">
+      <nav class="navbar navbar-inverse">
+          <div class="navbar-header" >
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+       
+            <div style="
+            DISPLAY: INLINE-FLEX;
+         "><span>
+          <img   alt="" src="./assets/images/logo.png"  style=" width: 79px;float: right;padding: 7px 4px 0px 0px; ">
+                      </span><span style="
+            COLOR: #ffffffe0;
+            FONT-SIZE: 24PX;
+            MARGIN-TOP: 26PX;
+         ">RADMUS</span></div>
+         
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"  >
+            <ul class="sidebar-menu" *ngIf="loggedUserRole =='Client'" >
+              <!-- <li class="header">MAIN NAVIGATION</li> -->
+              <li routerLink="/home" class="treeview">
+                <a >
+                <i class="material-icons" style="font-size:15px;">color_lens</i> <span> Dashboard</span>
+                </a>
+              </li>
+               <li routerLink="/clientview" class="treeview">
+                <a >
+                <i class="material-icons" style="font-size:15px;">chevron_left</i> <span> Clientview</span>
+                </a>
+              </li>
+               <li (click)="logout()" class="treeview">
+            <a  >
+             <i class="material-icons" style="font-size:15px;">rotate_right</i>
+                <span > Logout</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+           
+          </li>
+            </ul>
+            <ul class="sidebar-menu" *ngIf="loggedUserRole !='Client'" >
+              <!-- <li class="header">MAIN NAVIGATION</li> -->
+              <li routerLink="/home" class="treeview">
+                <a >
+                <i class="material-icons" style="font-size:15px;">color_lens</i> <span> Dashboard</span>
+                </a>
+              </li>
+       
+         <li (click)="test.toggle()" class="treeview" *ngIf="loggedUserRole=='admin'">
+            <a  >
+                <i class="material-icons" style="font-size:15px;">people</i>
+                <span > Users</span>
+                <i class="fa fa-angle-left pull-right"><i class="material-icons" style="font-size:15px;">chevron_left</i></i>
+            </a>
+           
+          </li>
+          <div mdbCollapse #test="bs-collapse">
+            <li routerLink="/radmus-users" class="treeview rr">
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span >Radmus Users</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li>
+            <li  class="treeview rr" >
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span >RBAC</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li>
+          </div>
+          <!-- ///add transaction -->
+         <li (click)="test1.toggle()" class="treeview">
+            <a  >
+               <i class="material-icons" style="font-size:15px;">local_atm</i>
+                <span > Transactions</span>
+                <i class="fa fa-angle-left pull-right"><i class="material-icons" style="font-size:15px;">chevron_left</i></i>
+            </a>
+           
+          </li>
+          <div mdbCollapse #test1="bs-collapse" class="sidebar_hvr">
+              <li routerLink="/add_shop" class="treeview rr" *ngIf="loggedUserRole=='admin'">
+                <a  >
+                    <i class="fa fa-laptop"></i>
+                    <span >Add Shop</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+               
+              </li>
+            <li routerLink="/add_transaction" class="treeview rr" *ngIf="loggedUserRole=='admin'">
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span >Add Transaction</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li>
+            <li routerLink="/receipt_upload" class="treeview rr"  >
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span >Reciept Upload</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li>
+            <li routerLink="/view_trans" class="treeview rr" *ngIf="loggedUserRole=='admin'">
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span >Reciept View</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li>
+          </div>
+            <li (click)="test5.toggle()" class="treeview" *ngIf="loggedUserRole=='admin'">
+            <a  >
+              <mat-icon style="font-size:15px;">add_shopping_cart</mat-icon>
+                <span >Market Food</span>
+                <i class="fa fa-angle-left pull-right"><i class="material-icons" style="font-size:15px;">chevron_left</i></i>
+
+            </a>
+           
+          </li>
+              <!-- --------- -->
+              <div mdbCollapse class="sidebar_hvr" #test5="bs-collapse">
+            <li  routerLink="parent/shopping-cart" class="treeview rr" >
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span>Shopping</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li> 
+            <li routerLink="cart-user"  class="treeview rr" >
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span >Add User</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li>
+          </div>
+              <!-- --------- -->
+          
+
+          <!-- ///ce  -->
+         <li (click)="test2.toggle()" class="treeview" *ngIf="loggedUserRole=='admin'">
+            <a  >
+               <i class="material-icons" style="font-size:15px;">people</i>
+                <span > CE Details</span>
+                <i class="fa fa-angle-left pull-right"><i class="material-icons" style="font-size:15px;">chevron_left</i></i>
+            </a>
+           
+          </li>
+          <div mdbCollapse class="sidebar_hvr" #test2="bs-collapse">
+            <li class="treeview rr" >
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span>Radaint CE</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li>
+            <li class="treeview rr" >
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span >CE OTP</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li>
+            <li class="treeview rr" >
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span >CE Passcode</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li>
+          </div>
+          <!-- ///Reports  -->
+         <li (click)="test3.toggle()" class="treeview">
+            <a  >
+                <i class="material-icons" style="font-size:15px;">collections</i>
+                <span > Reports</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+           
+          </li>
+          <div mdbCollapse class="sidebar_hvr" #test3="bs-collapse">
+            <li class="treeview rr" >
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span >Reports</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li>
+            <li class="treeview rr">
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span >PB & CB CIH</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li>
+            <li class="treeview rr" >
+              <a  >
+                  <i class="fa fa-laptop"></i>
+                  <span >Not Uploaded Reciept</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a>
+             
+            </li>
+          </div>
+          <li  class="treeview">
+            <a  >
+<i class="material-icons" style="font-size:15px;">wifi_tethering</i>
+                <span > BDS Tracking</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+           
+          </li>
+          <li  class="treeview">
+            <a  >
+                <i class="material-icons" style="font-size:15px;">filter_hdr</i>
+                <span > Radmus S/W Guide</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+           
+          </li>
+     
+          <li (click)="logout()" class="treeview">
+            <a  >
+<i class="material-icons" style="font-size:15px;">rotate_right</i>
+                <span > Logout</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+           
+          </li>
+     
+             
+             
+     
+             
+           
+           
+             
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </nav>
+    </aside>
+  </div>
+ 
+  <!-- ------------------------------- -->
+ 
+ 
+  <div class="sticky-header header-section ">
+    <div class="header-left">
+      <!--toggle button start-->
+      <!--toggle button end-->
+      <div class="profile_details_left"><!--notifications of menu start -->
+        <ul class="nofitications-dropdown">
+          <li class="dropdown head-dpdn">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge">4</span></a>
+         
+          </li>
+          <li class="dropdown head-dpdn">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">4</span></a>
+           
+          </li>
+          <li class="dropdown head-dpdn">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">8</span></a>
+         
+          </li>
+
+
+         <li routerLink="large" class="dropdown head-dpdn">
+            Bulk Data
+         
+          </li>
+        </ul>
+        <div class="clearfix"> </div>
+      </div>
+      <!--notification menu end -->
+      <div class="clearfix"> </div>
+    </div>
+    <div class="header-right">
+     
+     
+      <!--search-box-->
+      <div class="search-box">
+        <form class="input">
+          <input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="input-31" />
+          <label class="input__label" for="input-31">
+            <svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+              <path d="m0,0l404,0l0,77l-404,0l0,-77z"/>
+            </svg>
+          </label>
+        </form>
+      </div><!--//end-search-box-->
+     
+      <div class="profile_details">  
+        <ul>
+          <li class="dropdown profile_details_drop">
+            <a href="#" class="" data-toggle="dropdown" aria-expanded="false">
+              <div class="profile_img">
+                  <span class="prfil-img"><img width="40px" src="./assets/images/2.png" alt=""> </span>                <div class="user-name">
+                  <p>Welcome {{loggedUser}}</p>
+                </div>
+                <i class="fa fa-angle-down lnr"></i>
+                <i class="fa fa-angle-up lnr"></i>
+                <div class="clearfix"></div>  
+              </div>  
+            </a>
+           
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix"> </div>      
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+ 
+  <div id="page-wrapper">
+    <div class="main-page">
+   
+   
+ 
+ 
+ 
+  </div>
+  </div>

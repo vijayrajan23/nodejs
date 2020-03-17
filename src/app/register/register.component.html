@@ -1,0 +1,103 @@
+<div class="container-fluid" >
+    <div class="row">
+        <p></p>
+    </div>
+    <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4" style="    margin-top: 5px;text-align: center;">
+                    <img src="assets/images/logo.png" alt="logo" style="width:100px;">
+                </div>
+            <div class="col-md-4"></div>   
+    </div>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h4 class="site_name">Radiant Mobile Ultra Scanner Application</h4>
+     </div>
+    <div class="col-md-4"></div>                  
+</div>
+
+</div>
+<div class="container-fluid">
+    <div class="justify-content-center">
+    <div class="" style="margin-bottom :2%;">
+        <div class="card-body">
+                <!-- <h4 align="center">Register Here</h4> -->
+                <form [formGroup] = "registerForm"  (ngSubmit)="onSubmit()">
+                    <div class="row">
+                            <div class="col-sm-3"></div>
+            <div class="col-sm-3">
+               
+                       <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && myForm.name.errors }" />
+                            <div *ngIf="submitted && myForm.name.errors" class="invalid-feedback">
+                                <div *ngIf="myForm.name.errors?.required"> Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" type="email" formControlName="email" [ngClass]="{'is-invalid':submitted && myForm.email.errors}">
+                            <div *ngIf="submitted && myForm.email.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && myForm.email.errors?.required">
+                                    Enter your email.
+                                </div>
+                                <div *ngIf="submitted && myForm.email.errors?.pattern"  >
+                                    Enter valid email.
+                                </div>    
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">Password</label>
+                            <input class="form-control" type="password" formControlName="password"    [ngClass]="{'is-invalid': submitted && myForm.password.errors}" >
+                            <div  *ngIf="submitted && myForm.password.errors" class="invalid-feedback">
+                             <div  *ngIf="submitted && myForm.password.errors?.required" >Enter password.</div>
+                            </div>
+                        </div>
+                       
+                       
+                    
+            </div>
+            <div class="col-sm-3">
+                    <div class="form-group">
+                            <label for="mobile">Mobile</label>
+                            <input class="form-control" type="number" formControlName="mobile"  minlength="10" maxlength="10"  [ngClass]="{'is-invalid': submitted && myForm.mobile.errors}" >
+                            <div  *ngIf="submitted && myForm.mobile.errors" class="invalid-feedback">
+                             <div  *ngIf="submitted && myForm.mobile.errors?.required" >Enter your phone number.</div>
+                             <div *ngIf="myForm.mobile.errors?.pattern"> Mobile Number must be 10 digit</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">DOB</label>
+                            <input class="form-control" type="date" formControlName="dob"  [ngClass]="{'is-invalid': submitted && myForm.dob.errors}" >
+                            <div  *ngIf="submitted && myForm.dob.errors" class="invalid-feedback">
+                             <div  *ngIf="submitted && myForm.dob.errors?.required" >Enter your DoB.</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="designation">Designation</label>
+                            <select class="form-control" type="text" formControlName="designation" [ngClass]="{'is-invalid': submitted && myForm.designation.errors}">
+                                <option value="">Select</option>
+                                <option *ngFor="let employeeProfile of EmployeeProfile" value="{{employeeProfile}}">{{employeeProfile}}</option>
+                            </select>
+                            <div *ngIf="submitted && myForm.designation.errors" class="invalid-feedback">
+                                <div  *ngIf="submitted && myForm.designation.errors?.required" >
+                                    Choose designation.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                <label for="mobile">Already Have account?</label><a routerLink='/login'>Login</a>
+                                <!-- <button class="btn btn-outline-success btn-sm form-control" type="submit">Register</button> -->
+                            </div>
+                        <div class="form-group">
+                                <button class="btn btn-outline-success btn-sm form-control" type="submit">Register</button>
+                            </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        </form> 
+        </div>
+        </div>
+    </div>
+</div>

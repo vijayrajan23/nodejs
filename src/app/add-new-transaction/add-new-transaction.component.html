@@ -1,0 +1,184 @@
+<div id="page-wrapper">
+<div class="main-page">
+
+    <div class="container">
+   
+        <div class="row">
+            <div class="col-md-12 ">
+                <h5 class="page_title" >Add Transaction</h5>
+            </div>
+            <div class="col-md-12 filter_design">
+                <form [formGroup]='add_transaction'>
+                    <input type="hidden" formControlName='tx_id'>
+                    <div class="col-md-12">
+                        <div class="form-group col-md-2">
+                            <label> Region</label><br>
+                            <select class="form-control" formControlName='regionName'>
+                                <option hidden value="" disabled selected>Region</option>
+                                <option value="{{region.region_id}}" *ngFor="let region of get_regions">{{region.region_name}}</option>
+                            </select>
+                        </div>
+                        <!-- <div class="form-group col-md-2">
+                            <label> Location</label><br>
+                            <select class="form-control" formControlName='locationName'>
+                                    <option hidden value="" disabled selected>Location Name</option>
+                                    <option value="{{location.location_id}}" *ngFor="let location of get_location">{{location.location_name}}</option>
+                                    
+                            </select>
+                        </div> -->
+                        <div class="form-group col-md-2">
+                            <label>Client Name</label><br>
+                            <select class="form-control" formControlName='clientName' (change)="getCustomer($event.target.value)">
+                                 <option hidden value="" disabled selected>Client Name</option>
+                             <option value="{{client.client_id}}" *ngFor="let client of get_clients">{{client.client_name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Customer Name</label><br>
+                            <select class="form-control" formControlName='customerName' (change)="getShopName($event.target.value)">
+                                 <option hidden value="" disabled selected>Customer Name</option>
+                            <option value="{{customer.customer_id}}" *ngFor="let customer of get_customer">{{customer.customer_name}}</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Shop Code</label><br>
+                            <select class="form-control" formControlName='shopCode'>
+                                 <option hidden value="" disabled selected>Shop Code</option>
+                                <option value="{{shop.shop_id}}" *ngFor="let shop of get_shops">{{shop.shop_id}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Shop Name</label><br>
+                            <select class="form-control" formControlName='shopName'>
+                                 <option hidden value="" disabled selected>Shop Name</option>
+                                 <option value="{{shop.shop_name}}" *ngFor="let shop of get_shops">{{shop.shop_name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Transaction Type</label><br>
+                            <select class="form-control" formControlName='pickupType'>
+                                <option hidden value="" disabled selected>Transaction Type</option>
+                                <option value="Deposit">Deposite</option>
+                                <option value="Pickup">Pickup</option>
+                                <option value="Delivery">Delivery</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Pickup Date</label><br>
+                        <input class="form-control" type="date" formControlName='pickupDate'>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Pickup Amount</label><br>
+                        <input class="form-control" type="text" formControlName='pickupAmount'>
+                        </div>
+                      
+                    
+                        <div class="form-group col-md-2">
+                            <label>CE's Id</label><br>
+                            <select class="form-control" formControlName='ceName'>
+                                 <option hidden value="" disabled selected>CE's Id</option>
+                                <option value="RAD-TN-4343">RAD-TN-4343</option>
+                            </select>
+                        </div>
+                <div class="form-group col-md-2">
+                         <button mdbWavesEffect mdbBtn id="sub_but"  #sub_but *ngIf="sub_but" style="background-color:#249e29!important;color:white;background-color: #249e29!important;
+                         color: white;
+                         padding: 5px 14px" size='sm'  type="submit" (click)="onSubmit()">Submit</button>
+                       
+                         <button mdbWavesEffect mdbBtn  *ngIf="up_but" style="background-color:#0c2633 !important;color:white" size='sm'  type="submit" (click)="onUudate()">Update</button>
+                </div>
+                    </div>
+                </form> 
+            </div>    
+        </div>
+        <!--  ----------------- start --------------- -->
+        <div class="col-md-12 " style="border: 1px solid #1b536e45;
+        margin: 8px 0px;">
+       
+                <h5 class="page_title" >Add bulk transaction</h5>
+          
+            <div class="form-group" style="PADDING: 8PX 43PX;margin-bottom: 0;">
+                    <input type="file" class="form-control" (change)="onFileChange($event)" multiple="false" /><br>
+                    <a href='assets/daily_trans.xls' download>Sample Format</a>
+            </div>
+            <table datatable  class="table_import">
+                <tbody>
+              <tr  *ngFor="let row of datas">
+                    <td  *ngFor="let val of row">
+                        {{val}}
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+            <button (click)="onImport()" *ngIf="datas !=''">Submit</button>
+        </div>
+        <!-- -----------------  end  ------------------ -->
+        <div class="row" >
+            <div class="col-md-12" style="display: inline-flex">
+     
+                <h5 class="page_title" >Transaction</h5> 
+                 <a style="cursor: pointer;    margin: 8px 1px 0px 0px;
+                 " (click)="exportexcel()">
+                     <mat-icon style="color:red"> cloud_download</mat-icon>
+                      </a>
+            </div>
+           
+            <table id="excel-table" class="table table-striped" [svData]="data" #sv="svDataTable" [svRowsOnPage]="3" svSortBy="tid" svSortOrder="asc">
+                <thead>
+                <tr>
+                    <th>
+                        S.no
+                    </th>
+                    <th><sv-default-sorter by="tid">Transaction ID</sv-default-sorter></th>
+                    <th>Point Location</th>
+                    <th>CE Name/ID</th>
+                    <th>Client Name</th>
+                    <th>Customer Name</th>
+                    <th>Dep.Type</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of sv.data; let num=index">
+                    <td>{{num+1}}</td>
+                    <td>RAD00{{ item.id }}</td>
+                    <td>{{ item.region_name }}</td>
+                    <td >{{ item.ce_id }}</td>
+                    <td>{{ item.client_name }}</td>
+                    <td>{{ item.customer_name }}</td>
+                    <td>{{ item.transaction_type }}</td>
+                    <td>{{ item.amount }}</td>
+                    <td >
+                        <i *ngIf="item.upload_status=='0'" style="color:red; font-weight: 800;" class="material-icons" (click)="openDialog(num)">
+                        clear
+                        </i>
+                        <i *ngIf="item.upload_status=='1'" style="color:green; font-weight: 800;" class="material-icons" >
+                        done
+                        </i>
+                    </td>
+                   
+                    <td align="center">
+                        <tr>
+                            <td><button class="my_view_btn_update" (click)="updtae_trans(num)" mdbWavesEffect>Update</button> </td>
+                            <td> <button class="my_view_btn_delete"  (click)="delete_trans( item.id )" mdbWavesEffect>Delete</button></td>
+                         </tr>
+                    </td>  
+                    
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <sv-bootstrap-paginator [rowsOnPageSet]="[10, 20, 30]"></sv-bootstrap-paginator>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        </div>
+
+</div>
+</div>

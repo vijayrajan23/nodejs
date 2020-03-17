@@ -1,0 +1,100 @@
+<div id="page-wrapper">
+    <div class="main-page">
+    <div class="container">
+     
+    
+          <div class="row">
+     <section style="width: 100%;">
+       
+        <hr>
+        <select name="state" (change)="state_filter($event)" style="
+        border: 1px solid #80808063;
+        border-radius: 4px;">
+            <option>Select state</option>
+            <option>all</option>
+            <option *ngFor="let state of state">{{state.state}}</option>
+        </select>
+        
+        <input type="text" [(ngModel)]="term" style="float: right;
+        border: 1px solid #80808063;
+        border-radius: 4px;" placeholder="Search your place">
+
+        <table class="table table-striped table-hover" [svData]="data" #sv="svDataTable"  [svRowsOnPage]="500" svSortOrder="asc">
+            <thead>
+            <tr>
+            <th>
+            S.no
+            </th>
+            <th><sv-default-sorter by="loc_id">Location ID</sv-default-sorter></th>
+            <th >Country</th>
+            <th>State</th>
+            <th>District</th>
+            <th>Location</th>
+            <th>Pincode</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of sv.data |filter:term; let num=index" style="text-align: left !important">
+            <td>{{num+1}}</td>
+            <td>RSC{{ item.loc_id }}</td>
+            <td>{{ item.country }}</td>
+            <td >{{ item.state }}</td>
+            <td>{{ item.district }}</td>
+            <td>{{ item.location }}</td>
+            <td>{{ item.pincode }}</td>
+
+            </tr>
+            
+            </tbody>
+            <ng-template #skeleton>
+            <tbody>
+            <tr>
+            <td colspan="10">
+            <div class="ph-item">
+            <div class="ph-col-12">
+            <div class="ph-col-2 empty"></div>
+            <div class="ph-row">
+            <div class="ph-col-4"></div>
+            <div class="ph-col-2"></div>
+            <div class="ph-col-12"></div>
+            </div>
+            <div class="ph-col-2 empty"></div>
+            </div>
+            <div class="ph-col-2">
+            <div class="ph-col-2"></div>
+            </div>
+            <div>
+            <div class="ph-row">
+            <div class="ph-col-12"></div>
+            <div class="ph-col-2"></div>
+            <div class="ph-col-10 empty"></div>
+            <div class="ph-col-8 big"></div>
+            <div class="ph-col-4 big empty"></div>
+            </div>
+            </div>
+            </div> 
+            </td>
+            
+            </tr>
+            </tbody>
+            </ng-template>
+           
+            <tfoot>
+            <tr>
+            <td colspan="8">
+            <sv-bootstrap-paginator [rowsOnPageSet]="[10, 20, 30]"></sv-bootstrap-paginator>
+            </td>
+            </tr>
+            </tfoot>
+            </table>
+   
+     </section>
+     
+     
+     
+     </div>
+    </div>
+    </div>
+    </div>
+    

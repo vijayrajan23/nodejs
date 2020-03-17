@@ -1,0 +1,87 @@
+<div id="page-wrapper">
+        <div class="main-page">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">   
+            <h5 class="page_title"  >Add new user</h5>      
+       </div>
+    </div>
+    <div class="col-md-12 filter_design">
+        <form [formGroup]='add_users'>
+            <div class="col-md-12">
+                <div class="form-group col-md-2">
+                    <label> UserName</label><br>
+                <input class="form-control" type="text" formControlName='username'>
+                <input class="form-control" type="hidden" formControlName='id'>
+                </div>
+                <div class="form-group col-md-2">
+                    <label> Email</label><br>
+                <input class="form-control" type="text" formControlName='email'>
+                </div>
+                <div class="form-group col-md-2">
+                    <label> Password </label><br>
+                <input class="form-control" type="password" formControlName='password'>
+                </div>
+                <div class="form-group col-md-2">
+                    <label> Phone </label><br>
+                <input class="form-control" type="text" formControlName='phone'>
+                </div>
+                <div class="form-group col-md-2">
+                    <label> Role </label><br>
+                <input class="form-control" type="text" formControlName='role'>
+                </div>
+              
+            
+                    <div class="form-group col-md-2">
+                        <button mdbWavesEffect mdbBtn *ngIf="insertbtn" [disabled]="!add_users.valid" style="background-color:#249e29!important;color:white" size='sm'  type="submit" (click)="onSubmit()">Submit</button>
+                        <button mdbWavesEffect mdbBtn *ngIf="updatebtn" [disabled]="!add_users.valid" style="background-color:#249e29!important;color:white" size='sm'  type="submit" (click)="onUpdate(this.add_users.value.id)">Update</button>
+                    </div>
+            </div>
+        </form> 
+    </div>  
+
+<div *ngIf="data">
+                    <h5 class="page_title" style="margin-left: 15px !important;">Users list</h5>      
+<table class="table table-striped" [svData]="data" #sv="svDataTable" [svRowsOnPage]="5" >
+
+    <thead>						
+    <tr>
+        <th>ID</th>
+        <th>UserName</th>
+        <th>Email</th>
+       <!-- <th>Pass</th>-->
+        <th>Phone</th>
+        <th>Role</th>
+        <th>Update</th>
+        <th>Delete</th>      
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let res of sv.data;let num =index;">
+            <td>{{num+1}}</td>
+            <td>{{res.username}}</td>
+            <td>{{res.email}}</td>
+           <!-- <td>{{res.pass}}</td>--> 
+            <td>{{res.phone}}</td>        
+            <td>{{res.role}}</td>  
+            <td>          
+                <button type="button" (click) = "editUsers(num)" class="btn btn-info btn-sm">Update</button>                        
+            </td>     
+            <td>          
+             <button type="button" (click) = "delete(res.id)" class="btn btn-danger btn-sm">Delete</button>        
+            </td>     
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="8">
+                <sv-bootstrap-paginator [rowsOnPageSet]="[10, 20, 30]"></sv-bootstrap-paginator>
+            </td>
+        </tr>
+        </tfoot>
+</table>
+
+</div>
+</div>
+</div>
+</div>

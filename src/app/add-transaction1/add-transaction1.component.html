@@ -1,0 +1,113 @@
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">  
+                    <h5 class="page_title" >User register</h5>
+                </div>   
+                <div class="col-md-12">  
+                    <form [formGroup]="mytestform" (ngSubmit)="onSubmit()">
+                        <div class="form-group col-md-2">
+                            <label> User name</label><br>
+                            <input class="form-control" type="text" formControlName="uname">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Password</label><br>
+                            <input class="form-control" type="password" formControlName="password">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Confirm Password</label><br>
+                            <input class="form-control" type="password" formControlName="cpassword" onchange="password()">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Email</label><br>
+                            <input class="form-control" type="Email" required formControlName="email">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Mobile</label><br>
+                            <input class="form-control" type="text" formControlName="Mobile">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> DOB</label><br>
+                            <input class="form-control" type="date" formControlName="date_of_birth">
+                        </div>
+                        
+                       
+                        <div class="form-group col-md-4">
+                            <label> Address</label>
+                            <textarea class="form-control" style="display: inherit;" formControlName="address"></textarea>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Gender</label><br>
+                                <span style="display:flex;">
+                               Male <input class="form-control" value="Male" type="radio" formControlName="gender">
+                                Female<input class="form-control" value="Female" type="radio" formControlName="gender">
+                                </span>
+                        </div>
+
+                        <!-- <hr>
+                        <div class="form-group col-md-2">
+                            <label> Region id</label><br>
+                            <input class="form-control" type="text" formControlName="rid">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Client id</label><br>
+                            <input class="form-control" type="text" formControlName="cid">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Shop id</label><br>
+                            <input class="form-control" type="text" formControlName="sid">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Shop type</label><br>
+                            <input class="form-control" type="text" formControlName="shop_type">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label> Shop name</label><br>
+                            <input class="form-control" type="text" formControlName="shopname">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Pickup amount</label><br>
+                            <input class="form-control" type="text" formControlName="amount">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Transaction Type</label><br>
+                            <select class="form-control" formControlName='pickupType'>
+                                <option hidden value="" disabled selected>Transaction Type</option>
+                                <option value="Deposit">Deposite</option>
+                                <option value="Pickup">Pickup</option>
+                                <option value="Delivery">Delivery</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Remarks</label><br>
+                            <input class="form-control" type="text" formControlName="remarks">
+                        </div>  -->
+                        <hr>
+                        <div class="form-group col-md-12">
+                            <label> Add your skils</label><br>
+                            <span style="display: inline-flex;">
+                                <span>
+                                    <input  type="hidden" formControlName="skils" >
+                                    <input class="form-control" type="text" #skils (blur)="skilss()"   placeholder="Add your skils" >
+                                </span>
+                                <span>
+                                    <ul #newskils class="ff">
+                                        <li  *ngFor="let val of groupList;let num = index">
+                                            <span style="display: inline-flex;">{{val.sklis}}   <i class="material-icons fg" (click)="remove_skils(num)">close</i></span>
+                                        </li>
+                                    </ul>
+                                </span>
+                            </span>                                   
+                        </div>
+                        <hr>
+                        <div class="form-group col-md-2">
+                        <button mdbWavesEffect mdbBtn id="sub_but"  style="background-color:#249e29!important;color:white;
+                        padding: 5px 14px" size='sm'  type="submit" >Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

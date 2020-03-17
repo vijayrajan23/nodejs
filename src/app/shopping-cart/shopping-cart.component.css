@@ -1,0 +1,115 @@
+.ff{
+    border: 1px solid #c0bebe;
+    background: white;
+}
+.ff p{
+    color: #212121;
+    margin: 1.5em 0 1em;
+    line-height: 1.5em;
+    text-transform: capitalize;
+    font-size: 14px;
+    text-align: center;
+}
+.ff h4{
+    font-weight: 600;
+    font-size: 1em;
+    color: #212121;
+    text-align: center;
+}
+.ff1{
+    text-align: center;
+}
+
+.ff button{
+    font-size: 14px;
+    color: #fff;
+    background: olivedrab;
+    text-decoration: none;
+    position: relative;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    text-transform: uppercase;
+    padding: .5em 0;
+    outline: none;
+}
+.my_bt {
+    font-size: 14px;
+    color: #fff;
+    background:#ad6f02 !important;
+    text-decoration: none;
+    position: relative;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    text-transform: uppercase;
+    padding: .5em 0;
+    outline: none;
+    border-radius: 5px;
+}
+.sd{
+    padding:15px;
+}
+.mycart{
+        clear: left;
+        padding: 6px 0;
+        min-height: 25px;
+    
+}
+.mycart1{
+    float: left;
+    width: 30%;
+}
+.mycart1a{
+    float: left;
+    width: 15%;
+}
+.mycart1a input{
+    width: 30px;
+    height: 18px;
+    padding: 2px 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    font-size: 13px;
+    text-align: center;
+    transition: border linear 0.2s, box-shadow linear 0.2s;
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+.mycart1b{
+    float: left;
+    width: 7%;
+}
+.mycart1c{
+    float: left;
+    width: 16%;
+    text-align: right;
+    display: flex;
+    float: right;
+    font-size: 16px;
+    font-weight: 500;
+}
+.tff{
+    background: bisque;
+}
+.tff label{
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px;
+}
+.tff input{
+    
+    padding: 10x;
+    height: 41px;
+    border-radius: 7px;
+    border: n;
+    border: none;
+    padding: 7px;
+}
+.EMTY{
+    PADDING: 57PX;
+    TEXT-ALIGN: CENTER;
+    FONT-SIZE: 25PX;
+    COLOR: #a59076;
+}

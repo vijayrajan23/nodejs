@@ -1,0 +1,9 @@
+#sticky-footer {
+    flex-shrink: none;
+    bottom: 0;
+    color: white;
+    text-align: center;
+    background-color:#0d4865f0;
+    padding: 10px;
+  }
+  

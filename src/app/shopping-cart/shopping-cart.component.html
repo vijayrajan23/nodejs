@@ -1,0 +1,60 @@
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+             
+                    <h5 class="page_title" >Food Products</h5>
+                  <hr>
+                </div>
+                <div class="col-md-3" *ngFor="let product of product_display; index as num">
+                    <div class="ff">
+                        <div class="ff1">
+                            <div class="ff2">
+                                <img src="./assets/images/{{product.image}}" style="width:200px;height:200px;">
+                            </div>
+                            <p>{{product.product_name}}</p>
+                            <h4>Rs.{{product.amount}}</h4>
+                            <div class="sd">
+                                <button (click)="add_to_cart(num)">Add to cart </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+               
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="page_title" >My cart</h5>  
+                    <hr>
+                </div>
+                <div class="col-md-8 ff">
+                    <div  *ngIf="my_cartProduct ==''" class="EMTY">YOUR CART IS EMPTY</div>
+                 
+                    <div class="mycart" *ngFor="let cart of my_cartProduct;index as i">
+                        
+                        <div class="mycart1">  <img src="./assets/images/{{cart.image}}" style="width:50px;height:50px;"></div>
+                        <div class="mycart1">{{cart.product_name}}</div>
+                        <div class="mycart1a">
+                            <input type="text" id="login-menu{{i}}" value=1 #myInputi   (keyup)="quantity(myInputi.value,i)">
+                        </div>
+                        <div class="mycart1b">
+                            <i  style="color:red; font-weight: 800;" class="material-icons" (click)="remove(i)">
+                                clear
+                            </i>
+                        </div>
+                        <div class="mycart1c">
+                           Rs. <input readonly type="text" style="border: none;font-weight: 500;" id="am{{i}}" value={{cart.amount}}>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ff tff" >
+                    <label>Total Amount</label><br>
+                    <input type="text" placeholder="Amount" value="{{total}}"><br><br>
+                    <button class="my_bt" routerLink="/parent/hh">Process to pay</button><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+.my_header{
+    background-color: #032c42; 
+}
+  
+.site_name{
+    text-align: center;
+    color: aliceblue;
+    /* margin: 15px 0 0 15px; */
+    padding: 15px;
+}
+
+h4{
+    font-size: 20px;
+}
+.card{
+    border-radius: 5px;
+}
+.selector_bg {
+    background-color: red !important;
+}
+
+  

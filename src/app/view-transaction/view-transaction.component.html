@@ -1,0 +1,196 @@
+<div id="page-wrapper">
+<div class="main-page">
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+           
+            <h5 class="page_title" >Receipt View</h5>
+           
+        </div>
+        <div class="col-md-12 filter_design">
+            <form [formGroup]='receipt_upload' (ngSubmit)="onSubmit">
+                <div class="col-md-12">
+                    <div class="form-group col-md-2">
+                        <label> Transaction type</label><br>
+                        <select class="form-control" formControlName='Transaction_type'>
+                            <option value="Pickup">Pickup</option>
+                            <option value="Deposit">Deposit</option>
+                            <option value="Delivery">Delivery</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label> Transaction status</label><br>
+                        <select class="form-control" formControlName='Transaction_status'>
+                            <option  value="1">Uploaded</option>
+                            <option  value="0">Not Uploaded</option>  
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label> Region Name</label><br>
+                        <select class="form-control" formControlName='Region_Name' >
+                            <option value="{{rr.region_id}}" *ngFor="let rr of region_data">{{rr.region_name}}</option>
+                        </select>
+                       
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label> Date</label><br>
+                    <input class="form-control" type="date" formControlName='Date'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label> Client Name</label><br>
+                        <select class="form-control" formControlName='Client_Name' (change)="getCustomer($event)">
+                            <option value="{{w.client_id}}" *ngFor="let w of client_data">{{w.client_name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>  Customer Name</label><br>
+                        <select class="form-control" formControlName='Customer_Name'>
+                            <option value="{{y.customer_id}}" *ngFor="let y of customer_data" >{{y.customer_name}}</option>      
+                        </select>
+                    </div>
+               
+               
+                    <div class="form-group col-md-2">
+                        <label>   CE's Name</label><br>
+                        <select class="form-control" formControlName='CEs_Name'>
+                            <option value="RAD-TN-4343">RAD-TN-4343</option>
+                            <option value="RAD-TN-4344">RAD-TN-4344</option>
+                            <option value="RAD-TN-4345">RAD-TN-4345</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <button mdbBtn size="sm" style="background-color:#249e29!important;color:white" type="submit" (click)="getTransaction($event)">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>    
+    </div>
+    <div class="row">
+   
+        <table class="table table-striped" [svData]="data" #sv="svDataTable" [svRowsOnPage]="5" svSortBy="tid" svSortOrder="asc">
+            <thead>
+            <tr>
+                <th>
+                    S.no
+                </th>
+                <th><sv-default-sorter by="tid">Transaction ID</sv-default-sorter></th>
+                <th>Point Location</th>
+                <th>CE Name/ID</th>
+                <th>Client Name</th>
+                <th>Customer Name</th>
+                <th>Dep.Type</th>
+                <th>Amount</th>
+                <th>Action</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of sv.data; let num=index">
+                <td align="center">{{num+1}}</td>
+                <td align="center">RAD00{{ item.id }}</td>
+                <td align="center">{{ item.region_name }}</td>
+                <td align="center">{{ item.ce_id }}</td>
+                <td align="center">{{ item.client_name }}</td>
+                <td align="center">{{ item.customer_name }}</td>
+                <td align="center">{{ item.deposit_type }}</td>
+                <td align="center">{{ item.amount }}</td>
+                <td align="center">
+                   
+                    <i class="material-icons" style="color: red;
+                    font-weight: 800;"  *ngIf="item.approval_status=='0'" (click)="openDialog(item.id)">
+                    clear
+                    </i>
+                    <i *ngIf="item.approval_status=='true'" style="color: green;
+                    font-weight: 800;" class="material-icons" (click)="openDialog(item.id)">
+                    done
+                    </i>
+               
+                </td>
+                <td align="center"><button   class="my_view_btn"  (click)="openDialog(item.id)" mdbWavesEffect>View</button></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4">
+                    <sv-bootstrap-paginator [rowsOnPageSet]="[10, 20, 30]"></sv-bootstrap-paginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    </div>
+    </div>
+    </div>
+   
+   
+    <div mdbModal #try="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialogs modal-full-height modal-right" role="document">
+    <div class="modal-content">
+        <form [formGroup]="addressForm" class="container mt-3">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="try.hide()">
+                <span aria-hidden="true">Ã—</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Receipt View</h4>
+            </div>
+            <div class="modal-body">
+                <div class="receipt_upload_section" #receipt_upload_section>
+                        <div class="col-sm-8 own" *ngIf="view_data">
+                            <div class="col-sm-6">
+                                <label for="name" >Number Of Receipt : &nbsp;</label><span class="my_batch">{{view_data.length}}</span>
+                                <input type="hidden" formControlName="tx_id">
+                                <div *ngIf="view_data[0].approval_status=='0'">
+                                     <label style="color:red;">!Recipt upload status is pending </label>
+                                Approval : <input value="1" type="checkbox" formControlName="ap_status">
+                                </div>
+                               <div *ngIf="view_data[0].approval_status=='true'">
+                                   <span style="color: #19a93a;font-weight: 800;">Approved</span>
+                               </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" size="sm" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="try.hide()" mdbWavesEffect>Close</button>
+                                <button *ngIf="view_data[0].approval_status=='0'" type="button" (click)="submit_receipt();try.hide();"  mdbBtn size="sm" color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+                            </div>
+                        </div>
+                        <div  *ngFor="let address of view_data; let i = index;">
+                            <hr>
+                            <div class="col-sm-12 own">
+                                <div class="col-sm-8"  >
+                                    <label for="name" class="col-sm-5">Pickup Amount </label>
+                                    <input type="text" class="col-sm-7 form-control1"   value="{{address.amount}}">
+                                    <label for="name" class="col-sm-5">Deposit Type </label>
+                                    <input type="text" class="col-sm-7 form-control1"    value="{{address.deposite_type}}">
+                                    <label for="name" class="col-sm-5">Receipt No </label>
+                                    <input type="text" class="col-sm-7 form-control1"   value="{{address.receipt_no}}">
+                                    <label for="name" class="col-sm-5"> Deposit Branch </label>
+                                    <input type="text" class="col-sm-7 form-control1"   value="{{address.deposite_branch}}">
+                                    <label for="name" class="col-sm-5"> Remarks1 </label>
+                                    <input type="text" class="col-sm-7 form-control1"  value="{{address.remarks}}" >
+                                    <label for="name" class="col-sm-5">Region Recon Remarks </label>
+                                     <input type="text" class="col-sm-7 form-control1"   value="{{address.other_remarks}}">
+                                    <label for="name" class="col-sm-5">Collection Remarks </label>
+                                    <input type="text" class="col-sm-7 form-control1"  value="{{address.collection_remarks}}">
+                                   
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="img_border">
+                                        <div class="image-preview mb-3" >
+                                            <img src="assets/uploads/{{address.receipt_image}}" class="imagepreview_{{i}}" height="232" width="250" />                
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                    <div [innerHTML]="myHtml"></div>
+               
+            </div>
+            <div class="modal-footer">
+             
+            </div>
+    </form>
+    </div>
+    </div>
+    </div>      

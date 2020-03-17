@@ -1,0 +1,90 @@
+.form-control {
+font-size: 12px;
+height: 25px;
+padding: 2px;
+border-radius: 5px;
+}
+.btn.btn-sm{
+padding: 5PX 14PX;
+font-size: 0.64rem;
+}
+.form-control1{
+    font-size: 12px;
+    height: 28px;
+    padding: 0px;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    .incr,.decr{
+    border:1px solid #4950575e;
+    padding: 0px;
+    width: 25px;
+    text-align: center;
+    }
+
+ .modal-dialogs {
+        width: 60% !important;
+        margin: -2px;
+      
+    }
+    .modal {
+        overflow-y: auto !important;
+    }
+.img_border{
+    width:100%;
+    border: 1px solid #80808069;
+    background: #2d434e0a;
+    height: 232px;
+    margin-top: 12px;
+}
+.own{
+    display:  inline-flex;
+}
+
+ 
+.form-group {
+    display: inline-block;
+}
+label{
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 6px;
+}
+.dd{
+   
+    background: #4CAF50;
+    color: white;
+    border: gainsboro;
+
+}
+table thead th{
+    BACKGROUND: #1b536e;
+    COLOR: WHITE;
+    FONT-SIZE: 13PX;
+    font-weight: 500;
+}
+table td{   
+    padding: 3px;
+    font-size: 12px;
+    color: black;
+}
+.filter_design{
+    border: 1px solid #1b536e45;
+    margin: 8px 0px;
+}
+.page_title{
+    padding: 4px;
+    background: #d1dce11a;
+    margin: 8px 1px 0px 0px;
+    color: #175573;
+    font-size: 16px;
+}
+
+    

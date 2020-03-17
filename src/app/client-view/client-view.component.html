@@ -1,0 +1,129 @@
+<div id="page-wrapper">
+        <div class="main-page">
+<div class="container">
+   
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+            <h5 >Client View</h5>
+            <hr>
+        </div>
+        <div class="col-md-12">
+            <form [formGroup]='client_view'>
+               
+                    <div class="form-group col-md-2">
+                        <label>Pickup Date</label><br>
+                    <input class="form-control" type="date" formControlName='Date'>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label> Region</label><br>
+                          <select  class="form-control custom-select" formControlName='regionId' >
+                            <option  hidden value="" disabled selected>Region</option>
+                            <option  value="all" >All</option>
+                            <option value="{{region.region_id}}" *ngFor="let region of get_regions">{{region.region_name}}</option>
+                        </select>  
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label> Customer Name</label><br>
+                        <select  class="form-control" formControlName='customerId'>
+                             <option  hidden value="" disabled selected>Customer Name</option>
+                        <option value="{{customer.customer_id}}" *ngFor="let customer of get_customer">{{customer.customer_name}}</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Deposit Type</label><br>
+                        <select class="form-control" formControlName='depositType'>
+                            <option  hidden value="" disabled selected>Select deposit Type</option>
+                            <option value="Burial">Burial</option>
+                            <option value="Client Bank">Client Bank</option>
+                            <option value="Partner Bank">Partner Bank</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Service Type</label><br>
+                        <select class="form-control" formControlName='serviceType'>
+                            <option  hidden value="" disabled selected>Select Service Type</option>
+                            <option value="Pickup">Pickup</option>
+                            <option value="Delivery">Delivery</option>
+                        </select>
+                    </div>
+                    
+                  
+                <div class="form-group col-md-2">
+                    <button mdbWavesEffect mdbBtn color="info" size='sm'  type="submit" (click)="onSubmit()">Get Data</button>
+                </div>
+                <div *ngIf="data">
+                    <table class="table table-striped" [svData]="data" #sv="svDataTable" [svRowsOnPage]="5" svSortBy="tid" svSortOrder="asc">
+
+                        <thead>						
+                        <tr>
+                            <th >Trans ID</th >
+                            <th>Date</th>
+                            <th>CE ID</th>
+                            <th>Client Name</th>
+                            <th>Customer Name</th>
+                            <th>Point Id</th>
+                            <th>Shop Name</th>
+                            <th>Account.no</th>
+                            <th>Deposit Amount</th>
+                            <th>Branch</th>
+                            <th>Location</th>
+                            <th>Deposit Bank Type</th>
+                            <th>Image</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let res of sv.data">
+                                <td>{{res.id}}</td>
+                                <td>{{res.transaction_date}}</td>
+                                <td>{{res.ce_id}}</td>
+                                <td>{{Hiveloop}}</td>
+                                <td>{{res.customer_name}}</td>
+                                <td>{{res.shop_id}}</td>
+                                <td>{{res.shop_name}}</td>
+                                <td>91230456045</td>
+                                <td>{{res.amount}}</td>
+                                <td>branch</td>
+                                <td>loc</td>
+                                <td>{{res.deposit_type}}</td>
+                                <td>
+                                    <button type="button"  class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>
+                                        <img src="assets/uploads/{{res.receipt_image}}" height="50" width="50">
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="13">
+                                    <sv-bootstrap-paginator [rowsOnPageSet]="[10, 20, 30]"></sv-bootstrap-paginator>
+                                </td>
+                            </tr>
+                            </tfoot>
+                    </table>
+
+                  </div>
+            </form> 
+          
+
+            <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel">Scan Image</h4>
+                  </div>
+                  <div class="modal-body">
+                        <!-- <img src="assets/uploads/{{res.receipt_image}}" height="500" width="750"> -->
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+        </div>    
+    </div>
+    </div>
+    </div>
